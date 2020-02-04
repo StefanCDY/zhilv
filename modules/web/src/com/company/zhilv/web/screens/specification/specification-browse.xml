@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="specificationsTable"
+        messagesPack="com.company.zhilv.web.screens.specification">
+    <data readOnly="true">
+        <collection id="specificationsDc"
+                    class="com.company.zhilv.entity.Specification"
+                    view="_local">
+            <loader id="specificationsDl">
+                <query>
+                    <![CDATA[select e from zhilv_Specification e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="specificationsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="specificationsTable"
+                dataLoader="specificationsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="specificationsTable"
+               width="100%"
+               dataContainer="specificationsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="memo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="specificationsTable.create"/>
+                <button id="editBtn" action="specificationsTable.edit"/>
+                <button id="removeBtn" action="specificationsTable.remove"/>
+                <button id="refreshBtn" action="specificationsTable.refresh"/>
+                <button id="excelBtn" action="specificationsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

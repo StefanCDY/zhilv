@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-zhilv" insertBefore="administration">
+        <item screen="zhilv_MeasureUnit.browse"/>
+        <item screen="zhilv_Specification.browse"/>
+        <item screen="zhilv_Product.browse"/>
+        <item screen="zhilv_Customer.browse"/>
+        <item screen="zhilv_Agreement.browse"/>
+        <item screen="zhilv_Contract.browse"/>
+        <item screen="zhilv_Order.browse"/>
+    </menu>
+</menu-config>

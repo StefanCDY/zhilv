@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="zhilv" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.zhilv.entity.Product</class>
+        <class>com.company.zhilv.entity.Customer</class>
+        <class>com.company.zhilv.entity.Contract</class>
+        <class>com.company.zhilv.entity.Agreement</class>
+        <class>com.company.zhilv.entity.ContractFile</class>
+        <class>com.company.zhilv.entity.AgreementFile</class>
+        <class>com.company.zhilv.entity.Specification</class>
+        <class>com.company.zhilv.entity.Order</class>
+        <class>com.company.zhilv.entity.MeasureUnit</class>
+        <class>com.company.zhilv.entity.ContractItem</class>
+    </persistence-unit>
+</persistence>

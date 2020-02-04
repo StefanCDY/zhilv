@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.company.zhilv"/>
+    
+    <gui:screens base-packages="com.company.zhilv.web"/>
+    <bean id="zhilv_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="zhilv_AgreementService" value="com.company.zhilv.service.AgreementService"/>
+                <entry key="zhilv_ContractService" value="com.company.zhilv.service.ContractService"/>
+                <entry key="zhilv_CustomerService" value="com.company.zhilv.service.CustomerService"/>
+                <entry key="zhilv_CategoryService" value="com.company.zhilv.service.CategoryService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

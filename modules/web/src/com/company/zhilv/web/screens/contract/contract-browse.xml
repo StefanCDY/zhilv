@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="contractsTable"
+        messagesPack="com.company.zhilv.web.screens.contract">
+    <data readOnly="true">
+        <collection id="contractsDc"
+                    class="com.company.zhilv.entity.Contract"
+                    view="contract-view">
+            <loader id="contractsDl">
+                <query>
+                    <![CDATA[select e from zhilv_Contract e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="contractsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="contractsTable"
+                dataLoader="contractsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="contractsTable"
+               width="100%"
+               dataContainer="contractsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="customer"/>
+                <column id="startDate"/>
+                <column id="endDate"/>
+                <column id="status"/>
+                <column id="contract" link="true" linkInvoke="showContract"/>
+                <column id="memo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="contractsTable.create"/>
+                <button id="editBtn" action="contractsTable.edit"/>
+                <button id="removeBtn" action="contractsTable.remove"/>
+                <button id="refreshBtn" action="contractsTable.refresh"/>
+                <button id="excelBtn" action="contractsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

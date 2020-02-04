@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.zhilv.web.screens.contract">
+    <data>
+        <instance id="contractDc"
+                  class="com.company.zhilv.entity.Contract"
+                  view="contract-view">
+            <loader/>
+            <collection id="itemsDc" property="contractItems"/>
+            <collection id="filesDc" property="files">
+            </collection>
+        </instance>
+        <collection id="customersDc" class="com.company.zhilv.entity.Customer" view="_minimal">
+            <loader id="customersDl">
+                <query><![CDATA[select e from zhilv_Customer e ]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true" resizable="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="contractDc">
+            <column width="250px">
+                <lookupField id="customerField" property="customer" optionsContainer="customersDc" required="true"/>
+                <dateField id="startDateField" property="startDate" required="true"/>
+                <dateField id="endDateField" property="endDate" required="true"/>
+                <upload id="contractField" property="contract" dataContainer="contractDc"
+                        fileStoragePutMode="IMMEDIATE"
+                        showClearButton="true"
+                        showFileName="true"/>
+                <textArea id="memoField" property="memo" rows="3"/>
+            </column>
+        </form>
+        <groupBox id="itemsBox" caption="msg://com.company.zhilv.entity/Contract.contractItems" visible="false">
+            <table id="itemsTable" dataContainer="itemsDc" width="100%" height="200px">
+                <columns>
+                    <column id="product"/>
+                    <column id="amount"/>
+                    <column id="unitPrice"/>
+                </columns>
+                <rows/>
+            </table>
+
+            <table id="filesTable" dataContainer="filesDc" width="100%" height="200px" visible="false">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="createDate"/>
+                    <column id="extension"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="filesTable.create"/>
+                    <button action="filesTable.edit"/>
+                    <button action="filesTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

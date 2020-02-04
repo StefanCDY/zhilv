@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="productsTable"
+        messagesPack="com.company.zhilv.web.screens.product">
+    <data readOnly="true">
+        <collection id="productsDc"
+                    class="com.company.zhilv.entity.Product"
+                    view="product-view">
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from zhilv_Product e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="productsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="productsTable"
+                dataLoader="productsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="productsTable"
+               width="100%"
+               dataContainer="productsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="specification"/>
+                <column id="number"/>
+                <column id="packing"/>
+                <column id="place"/>
+                <column id="manufactureDate"/>
+                <column id="memo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="productsTable.create"/>
+                <button id="editBtn" action="productsTable.edit"/>
+                <button id="removeBtn" action="productsTable.remove"/>
+                <button id="refreshBtn" action="productsTable.refresh"/>
+                <button id="excelBtn" action="productsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="measureUnitsTable"
+        messagesPack="com.company.zhilv.web.screens.measureunit">
+    <data readOnly="true">
+        <collection id="measureUnitsDc"
+                    class="com.company.zhilv.entity.MeasureUnit"
+                    view="_local">
+            <loader id="measureUnitsDl">
+                <query>
+                    <![CDATA[select e from zhilv_MeasureUnit e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="measureUnitsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="measureUnitsTable"
+                dataLoader="measureUnitsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="measureUnitsTable"
+               width="100%"
+               dataContainer="measureUnitsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="memo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="measureUnitsTable.create"/>
+                <button id="editBtn" action="measureUnitsTable.edit"/>
+                <button id="removeBtn" action="measureUnitsTable.remove"/>
+                <button id="refreshBtn" action="measureUnitsTable.refresh"/>
+                <button id="excelBtn" action="measureUnitsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

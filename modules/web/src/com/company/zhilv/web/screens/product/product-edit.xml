@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.zhilv.web.screens.product">
+    <data>
+        <instance id="productDc"
+                  class="com.company.zhilv.entity.Product"
+                  view="product-view">
+            <loader/>
+        </instance>
+        <collection id="specificationsDc" class="com.company.zhilv.entity.Specification" view="_minimal">
+            <loader id="specificationsDl">
+                <query><![CDATA[select e from zhilv_Specification e ]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true" resizable="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="productDc">
+            <column width="250px">
+                <textField id="nameField" property="name" required="true"/>
+                <lookupField id="specificationField" property="specification" optionsContainer="specificationsDc"/>
+                <textField id="numberField" property="number"/>
+                <textField id="packingField" property="packing"/>
+                <textField id="placeField" property="place"/>
+                <dateField id="manufactureDateField" property="manufactureDate"/>
+                <textArea id="memoField" property="memo" rows="3"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="agreementsTable"
+        messagesPack="com.company.zhilv.web.screens.agreement">
+    <data readOnly="true">
+        <collection id="agreementsDc"
+                    class="com.company.zhilv.entity.Agreement"
+                    view="agreement-view">
+            <loader id="agreementsDl">
+                <query>
+                    <![CDATA[select e from zhilv_Agreement e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="agreementsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="agreementsTable"
+                dataLoader="agreementsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="agreementsTable"
+               width="100%"
+               dataContainer="agreementsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="customer"/>
+                <column id="startDate"/>
+                <column id="endDate"/>
+                <column id="status"/>
+                <column id="agreement" link="true" linkInvoke="showLicense"/>
+                <column id="memo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="agreementsTable.create"/>
+                <button id="editBtn" action="agreementsTable.edit"/>
+                <button id="removeBtn" action="agreementsTable.remove"/>
+                <button id="refreshBtn" action="agreementsTable.refresh"/>
+                <button id="excelBtn" action="agreementsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
