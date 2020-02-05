@@ -31,6 +31,7 @@
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
                 <action id="refresh" type="refresh"/>
+                <action id="cancel" caption="msg://actions.cancel"/>
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
@@ -48,6 +49,7 @@
                 <button id="editBtn" action="contractsTable.edit"/>
                 <button id="removeBtn" action="contractsTable.remove"/>
                 <button id="refreshBtn" action="contractsTable.refresh"/>
+                <button id="cancelBtn" action="contractsTable.cancel"/>
                 <button id="excelBtn" action="contractsTable.excel"/>
             </buttonsPanel>
         </table>

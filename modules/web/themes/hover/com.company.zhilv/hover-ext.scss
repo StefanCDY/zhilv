@@ -1,0 +1,15 @@
+/* Define your theme modifications inside next mixin */
+@mixin com_company_zhilv-hover-ext {
+    .v-table-cell-content.unenforced {
+      color: darkgray;
+    }
+    .v-table-cell-content.running {
+      color: green;
+    }
+    .v-table-cell-content.expired {
+      color: goldenrod;
+    }
+    .v-table-cell-content.canceled {
+      color: red;
+    }
+}
