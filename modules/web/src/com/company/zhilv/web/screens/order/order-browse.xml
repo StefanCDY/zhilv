@@ -34,15 +34,17 @@
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
+                <column id="contract.code"/>
                 <column id="product.name"/>
                 <column id="product.specification"/>
                 <column id="product.number"/>
                 <column id="product.packing"/>
                 <column id="product.manufactureDate"/>
                 <column id="customer"/>
-                <column id="amount"/>
                 <column id="measureUnit"/>
+                <column id="amount"/>
                 <column id="unitPrice"/>
+                <column id="totalPrice"/>
                 <column id="requirement"/>
                 <column id="orderDate"/>
                 <column id="cargoOutNumber"/>
@@ -59,6 +61,8 @@
                 <column id="isDeliver"/>
                 <column id="logisticsNumber"/>
                 <column id="deliveryTime"/>
+                <column id="returnType"/>
+                <column id="returnDate"/>
                 <column id="memo"/>
             </columns>
             <rowsCount/>

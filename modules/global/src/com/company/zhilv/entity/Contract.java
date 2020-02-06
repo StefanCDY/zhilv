@@ -1,6 +1,7 @@
 package com.company.zhilv.entity;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@NamePattern("%s|code")
 @Table(name = "ZHILV_CONTRACT")
 @Entity(name = "zhilv_Contract")
 public class Contract extends StandardEntity {
@@ -39,6 +41,8 @@ public class Contract extends StandardEntity {
     @JoinColumn(name = "CONTRACT_ID")
     protected FileDescriptor contract;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
     @OrderBy("createTs asc")
     @OneToMany(mappedBy = "contract")
     protected List<ContractItem> contractItems;

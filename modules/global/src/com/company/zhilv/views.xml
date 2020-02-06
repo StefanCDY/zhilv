@@ -16,11 +16,9 @@
         <property name="files" view="_minimal"/>
     </view>
     <view entity="zhilv_Order" name="order-view" extends="_local">
+        <property name="contract" view="_minimal"/>
         <property name="customer" view="_minimal"/>
-        <property name="product" view="_minimal">
-            <property name="packing"/>
-            <property name="manufactureDate"/>
-        </property>
+        <property name="product" view="_minimal"/>
         <property name="measureUnit" view="_minimal"/>
     </view>
     <view entity="zhilv_Product" name="product-view" extends="_local">
@@ -28,5 +26,9 @@
     </view>
     <view entity="zhilv_Customer" name="customer-view" extends="_local">
         <property name="licence" view="_minimal"/>
+    </view>
+    <view entity="zhilv_ContractItem" name="contractItem-view" extends="_local">
+        <property name="contract" view="_minimal"/>
+        <property name="product" view="_minimal"/>
     </view>
 </views>

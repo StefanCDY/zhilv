@@ -7,8 +7,10 @@ import com.haulmont.cuba.gui.components.TextField;
 import com.haulmont.cuba.gui.screen.*;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
+
+import static java.util.Objects.nonNull;
 
 @UiController("zhilv_Order.edit")
 @UiDescriptor("order-edit.xml")
@@ -23,12 +25,36 @@ public class OrderEdit extends StandardEditor<Order> {
     @Subscribe
     private void onAfterInit(AfterInitEvent event) {
         Order order = getEditedEntity();
-        if (Objects.nonNull(order) && order.getIsDeliver()) {
+        if (nonNull(order) && order.getIsDeliver()) {
             logisticsNumberField.setEditable(true);
             deliveryTimeField.setEditable(true);
         } else {
             logisticsNumberField.setEditable(false);
             deliveryTimeField.setEditable(false);
+        }
+    }
+
+    @Subscribe("amountField")
+    private void onAmountFieldValueChange(HasValue.ValueChangeEvent<BigDecimal> event) {
+        if (!event.isUserOriginated()) {
+            Order order = getEditedEntity();
+            BigDecimal amount = event.getValue();
+            BigDecimal unitPrice = order.getUnitPrice();
+            if (nonNull(unitPrice)) {
+                order.setTotalPrice(amount.multiply(unitPrice));
+            }
+        }
+    }
+
+    @Subscribe("unitPriceField")
+    private void onUnitPriceFieldValueChange(HasValue.ValueChangeEvent<BigDecimal> event) {
+        if (!event.isUserOriginated()) {
+            Order order = getEditedEntity();
+            BigDecimal unitPrice = event.getValue();
+            BigDecimal amount = order.getAmount();
+            if (nonNull(amount)) {
+                order.setTotalPrice(unitPrice.multiply(amount));
+            }
         }
     }
 

@@ -9,6 +9,11 @@
                   view="order-view">
             <loader/>
         </instance>
+        <collection id="contractsDc" class="com.company.zhilv.entity.Contract" view="_minimal">
+            <loader id="contractsDl">
+                <query><![CDATA[select e from zhilv_Contract e ]]></query>
+            </loader>
+        </collection>
         <collection id="productsDc" class="com.company.zhilv.entity.Product" view="product-view">
             <loader id="productsDl">
                 <query><![CDATA[select e from zhilv_Product e ]]></query>
@@ -30,36 +35,58 @@
                 modal="true"
                 forceDialog="true" resizable="true"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="orderDc">
-            <column width="250px">
-                <lookupField id="customerField" property="customer" optionsContainer="customersDc" required="true"/>
-                <lookupField id="productField" property="product" optionsContainer="productsDc" required="true"/>
-                <textField id="packingField" property="product.packing" editable="false"/>
-                <textField id="manufactureDateField" property="product.manufactureDate" editable="false"/>
-                <textField id="amountField" property="amount"/>
-                <lookupField id="measureUnitField" property="measureUnit" optionsContainer="measureUnitsDc"/>
-                <currencyField id="unitPriceField" property="unitPrice" currency="元"/>
-                <lookupField id="deliveryTypeField" property="deliveryType"/>
-                <textField id="receiverField" property="receiver"/>
-                <textField id="receivePhoneField" property="receivePhone"/>
-                <textField id="receiveAddressField" property="receiveAddress"/>
-                <textArea id="requirementField" property="requirement" rows="3" rowspan="3"/>
-            </column>
-            <column width="250px">
-                <dateField id="orderDateField" property="orderDate"/>
-                <textField id="cargoOutNumberField" property="cargoOutNumber"/>
-                <lookupField id="invoiceTypeField" property="invoiceType"/>
-                <textField id="invoiceNumberField" property="invoiceNumber"/>
-                <textField id="invoiceAddressField" property="invoiceAddress"/>
-                <textField id="invoiceContactField" property="invoiceContact"/>
-                <textField id="invoicePhoneField" property="invoicePhone"/>
-                <textField id="deliveryAddressField" property="deliveryAddress"/>
-                <checkBox id="isDeliverField" property="isDeliver"/>
-                <textField id="logisticsNumberField" property="logisticsNumber"/>
-                <dateField id="deliveryTimeField" property="deliveryTime"/>
-                <textArea id="memoField" property="memo" rows="3" rowspan="3"/>
-            </column>
-        </form>
+        <groupBox caption="msg://order.information">
+            <form id="form" dataContainer="orderDc">
+                <column width="250px">
+                    <lookupField id="contractField" property="contract" optionsContainer="contractsDc" required="true"/>
+                    <lookupField id="productField" property="product" optionsContainer="productsDc" required="true"/>
+                    <textField id="packingField" property="product.packing" editable="false"/>
+                    <textField id="manufactureDateField" property="product.manufactureDate" editable="false"/>
+                    <textField id="returnTypeField" property="returnType"/>
+                    <dateField id="returnDateField" property="returnDate"/>
+                    <textArea id="requirementField" property="requirement" rows="5"/>
+                </column>
+                <column width="250px">
+                    <dateField id="orderDateField" property="orderDate"/>
+                    <lookupField id="measureUnitField" property="measureUnit" optionsContainer="measureUnitsDc"/>
+                    <textField id="amountField" property="amount"/>
+                    <currencyField id="unitPriceField" property="unitPrice"/>
+                    <currencyField id="totalPriceField" property="totalPrice"/>
+                    <textField id="cargoOutNumberField" property="cargoOutNumber"/>
+                    <textArea id="memoField" property="memo" rows="5"/>
+                </column>
+            </form>
+        </groupBox>
+        <groupBox caption="msg://delivery.information">
+            <form id="deliveryForm" dataContainer="orderDc">
+                <column width="250px">
+                    <lookupField id="deliveryTypeField" property="deliveryType"/>
+                    <textField id="receiverField" property="receiver"/>
+                    <textField id="receivePhoneField" property="receivePhone"/>
+                    <textField id="receiveAddressField" property="receiveAddress"/>
+                </column>
+                <column width="250px">
+                    <textField id="deliveryAddressField" property="deliveryAddress"/>
+                    <checkBox id="isDeliverField" property="isDeliver"/>
+                    <textField id="logisticsNumberField" property="logisticsNumber"/>
+                    <dateField id="deliveryTimeField" property="deliveryTime"/>
+                </column>
+            </form>
+        </groupBox>
+        <groupBox caption="msg://invoice.information">
+            <form id="invoiceForm" dataContainer="orderDc">
+                <column width="250px">
+                    <lookupField id="customerField" property="customer" optionsContainer="customersDc"/>
+                    <lookupField id="invoiceTypeField" property="invoiceType"/>
+                    <textField id="invoiceNumberField" property="invoiceNumber"/>
+                </column>
+                <column width="250px">
+                    <textField id="invoiceContactField" property="invoiceContact"/>
+                    <textField id="invoicePhoneField" property="invoicePhone"/>
+                    <textField id="invoiceAddressField" property="invoiceAddress"/>
+                </column>
+            </form>
+        </groupBox>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

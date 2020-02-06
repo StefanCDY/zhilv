@@ -17,14 +17,20 @@
                 <query><![CDATA[select e from zhilv_Customer e ]]></query>
             </loader>
         </collection>
+        <collection id="productsDc" class="com.company.zhilv.entity.Product" view="_minimal">
+            <loader id="productsDl">
+                <query><![CDATA[select e from zhilv_Product e ]]></query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="AUTO"
-                width="AUTO"
+                width="800px"
                 modal="true"
                 forceDialog="true" resizable="true"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="contractDc">
             <column width="250px">
+                <textField id="codeField" property="code" required="true"/>
                 <lookupField id="customerField" property="customer" optionsContainer="customersDc" required="true"/>
                 <dateField id="startDateField" property="startDate" required="true"/>
                 <dateField id="endDateField" property="endDate" required="true"/>
@@ -35,14 +41,24 @@
                 <textArea id="memoField" property="memo" rows="3"/>
             </column>
         </form>
-        <groupBox id="itemsBox" caption="msg://com.company.zhilv.entity/Contract.contractItems" visible="false">
-            <table id="itemsTable" dataContainer="itemsDc" width="100%" height="200px">
+        <groupBox id="itemsBox" caption="msg://com.company.zhilv.entity/Contract.contractItems">
+            <table id="itemsTable" dataContainer="itemsDc" width="100%" height="200px" editable="true">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="remove" type="remove"/>
+                </actions>
                 <columns>
-                    <column id="product"/>
-                    <column id="amount"/>
-                    <column id="unitPrice"/>
+                    <column id="product" editable="true" generator="generateProductCell"/>
+                    <column id="product.specification"/>
+                    <column id="product.number"/>
+                    <column id="amount" editable="true"/>
+                    <column id="unitPrice" editable="true"/>
                 </columns>
-                <rows/>
+                <rowsCount/>
+                <buttonsPanel>
+                    <button action="itemsTable.add"/>
+                    <button action="itemsTable.remove"/>
+                </buttonsPanel>
             </table>
 
             <table id="filesTable" dataContainer="filesDc" width="100%" height="200px" visible="false">

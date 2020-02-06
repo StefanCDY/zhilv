@@ -35,6 +35,7 @@
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
+                <column id="code"/>
                 <column id="customer"/>
                 <column id="startDate"/>
                 <column id="endDate"/>

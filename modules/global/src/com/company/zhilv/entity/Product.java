@@ -6,7 +6,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.persistence.*;
 import java.util.Date;
 
-@NamePattern("%s %s %s|name,specification,number")
+@NamePattern("%s %s %s %s %s|name,specification,number,packing,manufactureDate")
 @Table(name = "ZHILV_PRODUCT")
 @Entity(name = "zhilv_Product")
 public class Product extends StandardEntity {

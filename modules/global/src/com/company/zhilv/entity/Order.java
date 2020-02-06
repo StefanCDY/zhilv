@@ -13,6 +13,10 @@ public class Order extends StandardEntity {
     private static final long serialVersionUID = 299160535630513088L;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTRACT_ID")
+    protected Contract contract;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     protected Customer customer;
 
@@ -31,6 +35,9 @@ public class Order extends StandardEntity {
     @NumberFormat(pattern = "#,##0.00")
     @Column(name = "UNIT_PRICE")
     protected BigDecimal unitPrice;
+
+    @Column(name = "TOTAL_PRICE")
+    protected BigDecimal totalPrice;
 
     @Lob
     @Column(name = "REQUIREMENT")
@@ -86,9 +93,48 @@ public class Order extends StandardEntity {
     @Column(name = "CARGO_OUT_NUMBER")
     protected String cargoOutNumber;
 
+    @Column(name = "RETURN_TYPE")
+    protected String returnType;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "RETURN_DATE")
+    protected Date returnDate;
+
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(String returnType) {
+        this.returnType = returnType;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public String getCargoOutNumber() {
         return cargoOutNumber;
