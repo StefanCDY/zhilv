@@ -25,15 +25,17 @@
         </filter>
         <table id="ordersTable"
                width="100%"
-               dataContainer="ordersDc">
+               dataContainer="ordersDc" aggregatable="true">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="copy" caption="mainMsg://actions.Copy" icon="icons/copy.png" trackSelection="true"/>
                 <action id="refresh" type="refresh"/>
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
+                <column id="orderDate"/>
                 <column id="contract.code"/>
                 <column id="product.name"/>
                 <column id="product.specification"/>
@@ -42,11 +44,14 @@
                 <column id="product.manufactureDate"/>
                 <column id="customer"/>
                 <column id="measureUnit"/>
-                <column id="amount"/>
+                <column id="amount">
+                    <aggregation type="SUM"/>
+                </column>
                 <column id="unitPrice"/>
-                <column id="totalPrice"/>
+                <column id="totalPrice">
+                    <aggregation type="SUM"/>
+                </column>
                 <column id="requirement"/>
-                <column id="orderDate"/>
                 <column id="cargoOutNumber"/>
                 <column id="deliveryType"/>
                 <column id="receiver"/>
@@ -71,6 +76,7 @@
                 <button id="createBtn" action="ordersTable.create"/>
                 <button id="editBtn" action="ordersTable.edit"/>
                 <button id="removeBtn" action="ordersTable.remove"/>
+                <button id="copyBtn" action="ordersTable.copy"/>
                 <button id="refreshBtn" action="ordersTable.refresh"/>
                 <button id="excelBtn" action="ordersTable.excel"/>
             </buttonsPanel>

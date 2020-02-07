@@ -35,8 +35,13 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="creditCode"/>
+                <column id="address"/>
                 <column id="licence" link="true" linkInvoke="showLicense"/>
+                <column id="creditCode"/>
+                <column id="bankName"/>
+                <column id="bankAccount"/>
+                <column id="saleArea"/>
+                <column id="contact"/>
                 <column id="memo"/>
             </columns>
             <rowsCount/>

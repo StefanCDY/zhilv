@@ -18,8 +18,8 @@ public class Customer extends StandardEntity {
     @Column(name = "NAME")
     protected String name;
 
-    @Column(name = "CREDIT_CODE")
-    protected String creditCode;
+    @Column(name = "ADDRESS")
+    protected String address;
 
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
@@ -27,9 +27,64 @@ public class Customer extends StandardEntity {
     @JoinColumn(name = "LICENCE_ID")
     protected FileDescriptor licence;
 
+    @Column(name = "CREDIT_CODE")
+    protected String creditCode;
+
+    @Column(name = "BANK_NAME")
+    protected String bankName;
+
+    @Column(name = "BANK_ACCOUNT")
+    protected String bankAccount;
+
+    @Column(name = "SALE_AREA")
+    protected String saleArea;
+
+    @Column(name = "CONTACT")
+    protected String contact;
+
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public String getSaleArea() {
+        return saleArea;
+    }
+
+    public void setSaleArea(String saleArea) {
+        this.saleArea = saleArea;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public void setLicence(FileDescriptor licence) {
         this.licence = licence;

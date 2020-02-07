@@ -30,6 +30,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="copy" caption="mainMsg://actions.Copy" icon="icons/copy.png" trackSelection="true"/>
                 <action id="refresh" type="refresh"/>
                 <action id="excel" type="excel"/>
             </actions>
@@ -48,6 +49,7 @@
                 <button id="createBtn" action="productsTable.create"/>
                 <button id="editBtn" action="productsTable.edit"/>
                 <button id="removeBtn" action="productsTable.remove"/>
+                <button id="bulkEditBtn" action="productsTable.copy"/>
                 <button id="refreshBtn" action="productsTable.refresh"/>
                 <button id="excelBtn" action="productsTable.excel"/>
             </buttonsPanel>

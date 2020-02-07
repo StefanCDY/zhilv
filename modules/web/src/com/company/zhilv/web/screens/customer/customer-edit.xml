@@ -15,17 +15,25 @@
                 modal="true"
                 forceDialog="true" resizable="true"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="customerDc">
-            <column width="250px">
-                <textField id="nameField" property="name" required="true"/>
-                <textField id="creditCodeField" property="creditCode"/>
-                <upload id="licenseField" property="licence" dataContainer="customerDc"
-                        fileStoragePutMode="IMMEDIATE"
-                        showClearButton="true"
-                        showFileName="true"/>
-                <textArea id="memoField" property="memo" rows="3"/>
-            </column>
-        </form>
+        <scrollBox id="scrollBox">
+            <form id="form" dataContainer="customerDc">
+                <column width="250px">
+                    <textField id="nameField" property="name" required="true"/>
+                    <textField id="addressField" property="address"/>
+                    <upload id="licenseField" property="licence"
+                            dataContainer="customerDc"
+                            fileStoragePutMode="IMMEDIATE"
+                            showClearButton="true"
+                            showFileName="true"/>
+                    <textField id="creditCodeField" property="creditCode"/>
+                    <textField id="bankNameField" property="bankName"/>
+                    <textField id="bankAccountField" property="bankAccount"/>
+                    <textField id="saleAreaField" property="saleArea"/>
+                    <textField id="contactField" property="contact"/>
+                    <textArea id="memoField" property="memo" rows="3"/>
+                </column>
+            </form>
+        </scrollBox>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
