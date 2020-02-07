@@ -44,7 +44,7 @@ public class Contract extends StandardEntity {
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OrderBy("createTs asc")
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<ContractItem> contractItems;
 
     @Composition

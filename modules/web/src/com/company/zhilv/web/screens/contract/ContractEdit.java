@@ -1,9 +1,6 @@
 package com.company.zhilv.web.screens.contract;
 
-import com.company.zhilv.entity.Contract;
-import com.company.zhilv.entity.ContractItem;
-import com.company.zhilv.entity.ContractStatus;
-import com.company.zhilv.entity.Product;
+import com.company.zhilv.entity.*;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.UiComponents;
@@ -12,7 +9,6 @@ import com.haulmont.cuba.gui.components.Component;
 import com.haulmont.cuba.gui.components.LookupField;
 import com.haulmont.cuba.gui.components.Table;
 import com.haulmont.cuba.gui.components.data.options.ContainerOptions;
-import com.haulmont.cuba.gui.components.data.value.ContainerValueSource;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionPropertyContainer;
 import com.haulmont.cuba.gui.screen.*;
@@ -27,9 +23,11 @@ import java.util.Objects;
 @LoadDataBeforeShow
 public class ContractEdit extends StandardEditor<Contract> {
     @Inject
+    private CollectionPropertyContainer<ContractItem> itemsDc;
+    @Inject
     private CollectionContainer<Product> productsDc;
     @Inject
-    private CollectionPropertyContainer<ContractItem> itemsDc;
+    private CollectionContainer<MeasureUnit> measureUnitsDc;
     @Inject
     private Table<ContractItem> itemsTable;
     @Inject
@@ -43,9 +41,26 @@ public class ContractEdit extends StandardEditor<Contract> {
 
     public Component generateProductCell(ContractItem item) {
         LookupField<Product> lookupField = uiComponents.create(LookupField.of(Product.class));
-        lookupField.setValueSource(new ContainerValueSource<>(itemsDc, "product"));
         lookupField.setOptions(new ContainerOptions<>(productsDc));
         lookupField.setValue(item.getProduct());
+        lookupField.setRequired(true);
+        lookupField.addValueChangeListener(event -> {
+            if (event.isUserOriginated()) {
+                item.setProduct(event.getValue());
+            }
+        });
+        return lookupField;
+    }
+
+    public Component generateMeasureUnitCell(ContractItem item) {
+        LookupField<MeasureUnit> lookupField = uiComponents.create(LookupField.of(MeasureUnit.class));
+        lookupField.setOptions(new ContainerOptions<>(measureUnitsDc));
+        lookupField.setValue(item.getMeasureUnit());
+        lookupField.addValueChangeListener(event -> {
+            if (event.isUserOriginated()) {
+                item.setMeasureUnit(event.getValue());
+            }
+        });
         return lookupField;
     }
 

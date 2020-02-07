@@ -8,7 +8,7 @@
       maxIdle="2"
       maxWaitMillis="5000"
       driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost/zhilv?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Shanghai&amp;&amp;characterEncoding=UTF-8"
+      url="jdbc:mysql://localhost/zhilv?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Hongkong&amp;characterEncoding=UTF-8"
       username="root"
       password="123456"/>
 

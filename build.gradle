@@ -109,19 +109,21 @@ configure(coreModule) {
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
         dbms = 'mysql'
-        host = 'zhilv?useSSL=false&allowMultiQueries=true&serverTimezone=Asia'
-        dbName = 'Shanghai&&characterEncoding=UTF-8'
+        host = 'localhost'
+        dbName = 'zhilv'
         dbUser = 'root'
         dbPassword = '123456'
-        }
+        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong&characterEncoding=UTF-8'
+    }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
         dbms = 'mysql'
-        host = 'zhilv?useSSL=false&allowMultiQueries=true&serverTimezone=Asia'
-        dbName = 'Shanghai&&characterEncoding=UTF-8'
+        host = 'localhost'
+        dbName = 'zhilv'
         dbUser = 'root'
         dbPassword = '123456'
-        }
+        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong&characterEncoding=UTF-8'
+    }
 }
 
 configure(webModule) {

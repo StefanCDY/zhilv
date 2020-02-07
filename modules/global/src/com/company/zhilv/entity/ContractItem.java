@@ -19,6 +19,10 @@ public class ContractItem extends StandardEntity {
     @JoinColumn(name = "PRODUCT_ID")
     protected Product product;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEASURE_UNIT_ID")
+    protected MeasureUnit measureUnit;
+
     @NumberFormat(pattern = "#,##0.####")
     @Column(name = "AMOUNT")
     protected BigDecimal amount;
@@ -30,6 +34,14 @@ public class ContractItem extends StandardEntity {
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public MeasureUnit getMeasureUnit() {
+        return measureUnit;
+    }
+
+    public void setMeasureUnit(MeasureUnit measureUnit) {
+        this.measureUnit = measureUnit;
+    }
 
     public String getMemo() {
         return memo;
