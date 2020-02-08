@@ -36,7 +36,5 @@ public class ProductBrowse extends StandardLookup<Product> {
             newProduct.setMemo(product.getMemo());
             screenBuilders.editor(productsTable).editEntity(newProduct).build().show();
         }
-
-        productsTable.addp
     }
 }
