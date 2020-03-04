@@ -25,7 +25,7 @@ public class Order extends StandardEntity {
     protected Product product;
 
     @NumberFormat(pattern = "#,##0.####")
-    @Column(name = "AMOUNT")
+    @Column(name = "AMOUNT", precision = 19, scale = 4)
     protected BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -93,6 +93,10 @@ public class Order extends StandardEntity {
     @Column(name = "CARGO_OUT_NUMBER")
     protected String cargoOutNumber;
 
+    @NumberFormat(pattern = "#,##0.####")
+    @Column(name = "ACTUAL_AMOUNT", precision = 19, scale = 4)
+    protected BigDecimal actualAmount = BigDecimal.ZERO;
+
     @Column(name = "RETURN_TYPE")
     protected String returnType;
 
@@ -103,6 +107,14 @@ public class Order extends StandardEntity {
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public BigDecimal getActualAmount() {
+        return actualAmount;
+    }
+
+    public void setActualAmount(BigDecimal actualAmount) {
+        this.actualAmount = actualAmount;
+    }
 
     public Contract getContract() {
         return contract;

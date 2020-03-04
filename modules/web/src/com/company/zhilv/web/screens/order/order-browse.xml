@@ -47,6 +47,9 @@
                 <column id="amount">
                     <aggregation type="SUM"/>
                 </column>
+                <column id="actualAmount">
+                    <aggregation type="SUM"/>
+                </column>
                 <column id="unitPrice"/>
                 <column id="totalPrice">
                     <aggregation type="SUM"/>

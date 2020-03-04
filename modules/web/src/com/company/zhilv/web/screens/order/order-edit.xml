@@ -43,17 +43,19 @@
                         <lookupField id="productField" property="product" optionsContainer="productsDc" required="true"/>
                         <textField id="packingField" property="product.packing" editable="false"/>
                         <textField id="manufactureDateField" property="product.manufactureDate" editable="false"/>
+                        <dateField id="orderDateField" property="orderDate"/>
                         <textField id="returnTypeField" property="returnType"/>
                         <dateField id="returnDateField" property="returnDate"/>
                         <textArea id="requirementField" property="requirement" rows="5"/>
                     </column>
                     <column width="250px">
-                        <dateField id="orderDateField" property="orderDate"/>
                         <lookupField id="measureUnitField" property="measureUnit" optionsContainer="measureUnitsDc"/>
                         <textField id="amountField" property="amount"/>
+                        <textField id="actualAmountField" property="actualAmount"/>
                         <currencyField id="unitPriceField" property="unitPrice"/>
                         <currencyField id="totalPriceField" property="totalPrice"/>
                         <textField id="cargoOutNumberField" property="cargoOutNumber"/>
+                        <label/>
                         <textArea id="memoField" property="memo" rows="5"/>
                     </column>
                 </form>

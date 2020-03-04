@@ -5,7 +5,7 @@
         <item screen="zhilv_Specification.browse"/>
         <item screen="zhilv_Product.browse"/>
         <item screen="zhilv_Customer.browse"/>
-        <item screen="zhilv_Agreement.browse"/>
+<!--        <item screen="zhilv_Agreement.browse"/>-->
         <item screen="zhilv_Contract.browse"/>
         <item screen="zhilv_Order.browse"/>
     </menu>

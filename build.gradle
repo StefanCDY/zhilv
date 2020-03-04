@@ -209,7 +209,10 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
 task buildWar(type: CubaWarBuilding) {
     includeJdbcDriver = true
     includeContextXml = true
-    appProperties = ['cuba.automaticDatabaseUpdate': true, 'cuba.web.productionMode': true]
+    appProperties = ['cuba.automaticDatabaseUpdate': true, 
+                     'cuba.web.productionMode': true, 
+                     'cuba.web.loginDialogDefaultUser': '<disabled>', 
+                     'cuba.web.loginDialogDefaultPassword': '<disabled>']
     webXmlPath = 'modules/web/web/WEB-INF/single-war-web.xml'
     appHome = '../zhilv'
     coreContextXmlPath = 'modules/core/web/META-INF/war-context.xml'
