@@ -47,4 +47,33 @@
             <property name="unitPrice"/>
         </property>
     </view>
+    <view entity="zhilv_OrderItem" name="orderItem-browser-view" extends="_local">
+        <property name="order" view="_minimal">
+            <property name="code"/>
+            <property name="contract" view="_minimal">
+                <property name="customer" view="_minimal"/>
+            </property>
+            <property name="requirement"/>
+            <property name="orderDate"/>
+            <property name="invoiceType"/>
+            <property name="deliveryType"/>
+            <property name="deliveryAddress"/>
+            <property name="receiver"/>
+            <property name="receivePhone"/>
+            <property name="receiveAddress"/>
+            <property name="invoiceNumber"/>
+            <property name="invoiceAddress"/>
+            <property name="invoiceContact"/>
+            <property name="invoicePhone"/>
+            <property name="isDeliver"/>
+            <property name="logisticsNumber"/>
+            <property name="deliveryTime"/>
+            <property name="cargoOutNumber"/>
+            <property name="returnType"/>
+            <property name="returnDate"/>
+            <property name="memo"/>
+        </property>
+        <property name="product" view="_minimal"/>
+        <property name="measureUnit" view="_minimal"/>
+    </view>
 </views>

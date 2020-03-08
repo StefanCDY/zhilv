@@ -9,5 +9,6 @@
     <menu id="zhilv-application" insertBefore="administration">
         <item screen="zhilv_Contract.browse"/>
         <item screen="zhilv_Order.browse"/>
+        <item screen="zhilv_OrderItem.browse"/>
     </menu>
 </menu-config>

@@ -35,6 +35,7 @@
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
+                <column id="code"/>
                 <column id="contract.code"/>
                 <column id="orderDate"/>
                 <column id="totalPrice">
@@ -42,20 +43,20 @@
                 </column>
                 <column id="cargoOutNumber"/>
                 <column id="deliveryType"/>
-                <column id="receiver"/>
-                <column id="receivePhone"/>
-                <column id="receiveAddress"/>
-                <column id="invoiceType"/>
-                <column id="invoiceNumber"/>
-                <column id="invoiceAddress"/>
-                <column id="invoiceContact"/>
-                <column id="invoicePhone"/>
                 <column id="isDeliver"/>
-                <column id="deliveryAddress"/>
                 <column id="logisticsNumber"/>
                 <column id="deliveryTime"/>
+                <column id="deliveryAddress"/>
                 <column id="returnType"/>
                 <column id="returnDate"/>
+                <column id="receiver"/>
+                <column id="receivePhone"/>
+                <column id="receiveAddress" maxTextLength="50"/>
+                <column id="invoiceType"/>
+                <column id="invoiceNumber"/>
+                <column id="invoiceContact"/>
+                <column id="invoicePhone"/>
+                <column id="invoiceAddress" maxTextLength="50"/>
                 <column id="requirement" maxTextLength="50"/>
                 <column id="memo" maxTextLength="50"/>
             </columns>

@@ -2,6 +2,7 @@ package com.company.zhilv.web.screens.order;
 
 import com.company.zhilv.entity.*;
 import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.PersistenceHelper;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.UiComponents;
 import com.haulmont.cuba.gui.components.*;
@@ -13,6 +14,8 @@ import com.haulmont.cuba.gui.screen.*;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -111,6 +114,11 @@ public class OrderEdit extends StandardEditor<Order> {
         if (count > 0) {
             notifications.create(Notifications.NotificationType.HUMANIZED).withCaption(messageBundle.getMessage("order.orderItem.product.notNull")).show();
             event.preventCommit();
+            return;
+        }
+        Order order = getEditedEntity();
+        if (PersistenceHelper.isNew(order)) {
+            order.setCode(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now()));
         }
     }
 

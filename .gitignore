@@ -13,3 +13,5 @@ test-run
 *.sql
 studio-intellij.xml
 *war*.xml
+
+deploy.bat

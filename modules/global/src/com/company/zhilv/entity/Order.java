@@ -16,6 +16,9 @@ import java.util.List;
 public class Order extends StandardEntity {
     private static final long serialVersionUID = 299160535630513088L;
 
+    @Column(name = "CODE")
+    protected String code;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CONTRACT_ID")
     protected Contract contract;
@@ -98,6 +101,14 @@ public class Order extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<OrderItem> orderItems;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public List<OrderItem> getOrderItems() {
         return orderItems;

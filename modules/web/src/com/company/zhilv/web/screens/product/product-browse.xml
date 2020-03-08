@@ -40,7 +40,7 @@
                 <column id="packing"/>
                 <column id="place"/>
                 <column id="manufactureDate"/>
-                <column id="memo"/>
+                <column id="memo" maxTextLength="50"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

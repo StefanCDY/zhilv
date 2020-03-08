@@ -59,10 +59,10 @@
                         <column id="product" generator="generateProductCell" editable="true"/>
                         <column id="product.specification"/>
                         <column id="batchNumber" editable="true" width="150px"/>
-                        <column id="measureUnit" generator="generateMeasureUnitCell" editable="true" width="100px"/>
-                        <column id="amount" editable="true" width="100px"/>
-                        <column id="unitPrice" editable="true" width="100px"/>
-                        <column id="totalPrice" width="100px"/>
+                        <column id="measureUnit" generator="generateMeasureUnitCell" editable="true" width="120px"/>
+                        <column id="amount" editable="true" width="120px"/>
+                        <column id="unitPrice" editable="true" width="120px"/>
+                        <column id="totalPrice" width="120px"/>
                         <column id="memo" editable="true"/>
                     </columns>
                     <rowsCount/>

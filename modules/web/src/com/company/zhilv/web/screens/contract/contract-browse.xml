@@ -41,7 +41,7 @@
                 <column id="endDate"/>
                 <column id="status"/>
                 <column id="contract" link="true" linkInvoke="showContract"/>
-                <column id="memo"/>
+                <column id="memo" maxTextLength="50"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

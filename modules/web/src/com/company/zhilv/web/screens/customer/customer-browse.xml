@@ -48,7 +48,7 @@
                 <column id="invoicePhone"/>
                 <column id="invoiceAddress"/>
                 <column id="licence" link="true" linkInvoke="showLicense"/>
-                <column id="memo"/>
+                <column id="memo" maxTextLength="50"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

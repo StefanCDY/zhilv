@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="orderItemsTable"
+        messagesPack="com.company.zhilv.web.screens.orderitem">
+    <data readOnly="true">
+        <collection id="orderItemsDc"
+                    class="com.company.zhilv.entity.OrderItem"
+                    view="orderItem-browser-view">
+            <loader id="orderItemsDl">
+                <query><![CDATA[select e from zhilv_OrderItem e order by e.createTs desc]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="orderItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="orderItemsTable"
+                dataLoader="orderItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="orderItemsTable"
+               width="100%"
+               dataContainer="orderItemsDc" aggregatable="true">
+            <actions>
+                <action id="create" type="create" visible="false"/>
+                <action id="edit" type="edit" visible="false"/>
+                <action id="remove" type="remove" visible="false"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="order.code"/>
+                <column id="order.orderDate"/>
+                <column id="order.contract.customer"/>
+                <column id="product.name"/>
+                <column id="product.specification"/>
+                <column id="batchNumber"/>
+                <column id="amount"/>
+                <column id="measureUnit"/>
+                <column id="unitPrice"/>
+                <column id="totalPrice">
+                    <aggregation type="SUM"/>
+                </column>
+                <column id="order.cargoOutNumber"/>
+                <column id="order.deliveryType"/>
+                <column id="order.isDeliver"/>
+                <column id="order.logisticsNumber"/>
+                <column id="order.deliveryTime"/>
+                <column id="order.deliveryAddress"/>
+                <column id="order.returnType"/>
+                <column id="order.returnDate"/>
+                <column id="order.receiver"/>
+                <column id="order.receivePhone"/>
+                <column id="order.receiveAddress" maxTextLength="50"/>
+                <column id="order.invoiceType"/>
+                <column id="order.invoiceNumber"/>
+                <column id="order.invoiceContact"/>
+                <column id="order.invoicePhone"/>
+                <column id="order.invoiceAddress"/>
+                <column id="order.requirement" maxTextLength="50"/>
+                <column id="memo" maxTextLength="50"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="orderItemsTable.create"/>
+                <button id="editBtn" action="orderItemsTable.edit"/>
+                <button id="removeBtn" action="orderItemsTable.remove"/>
+                <button id="refreshBtn" action="orderItemsTable.refresh"/>
+                <button id="excelBtn" action="orderItemsTable.excel"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
