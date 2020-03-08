@@ -24,7 +24,6 @@
             <column width="250px">
                 <textField id="nameField" property="name" required="true"/>
                 <lookupField id="specificationField" property="specification" optionsContainer="specificationsDc"/>
-                <textField id="numberField" property="number"/>
                 <textField id="packingField" property="packing"/>
                 <textField id="placeField" property="place"/>
                 <dateField id="manufactureDateField" property="manufactureDate"/>

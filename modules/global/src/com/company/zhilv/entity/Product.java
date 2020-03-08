@@ -5,8 +5,9 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
-@NamePattern("%s %s %s %s %s|name,specification,number,packing,manufactureDate")
+@NamePattern("%s %s  %s %s|name,specification,packing,manufactureDate")
 @Table(name = "ZHILV_PRODUCT")
 @Entity(name = "zhilv_Product")
 public class Product extends StandardEntity {
@@ -18,9 +19,6 @@ public class Product extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SPECIFICATION_ID")
     protected Specification specification;
-
-    @Column(name = "NUMBER_")
-    protected String number;
 
     @Column(name = "PACKING")
     protected String packing;
@@ -76,19 +74,29 @@ public class Product extends StandardEntity {
         return specification;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Product product = (Product) o;
+        return Objects.equals(name, product.name) &&
+                Objects.equals(specification, product.specification) &&
+                Objects.equals(packing, product.packing) &&
+                Objects.equals(place, product.place) &&
+                Objects.equals(manufactureDate, product.manufactureDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, specification, packing, place, manufactureDate);
     }
 }

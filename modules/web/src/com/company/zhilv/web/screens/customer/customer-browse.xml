@@ -36,12 +36,18 @@
             <columns>
                 <column id="name"/>
                 <column id="address"/>
-                <column id="licence" link="true" linkInvoke="showLicense"/>
                 <column id="creditCode"/>
                 <column id="bankName"/>
                 <column id="bankAccount"/>
                 <column id="saleArea"/>
                 <column id="contact"/>
+                <column id="receiver"/>
+                <column id="receivePhone"/>
+                <column id="receiveAddress"/>
+                <column id="invoiceContact"/>
+                <column id="invoicePhone"/>
+                <column id="invoiceAddress"/>
+                <column id="licence" link="true" linkInvoke="showLicense"/>
                 <column id="memo"/>
             </columns>
             <rowsCount/>

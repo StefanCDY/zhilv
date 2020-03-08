@@ -16,21 +16,29 @@
                 forceDialog="true" resizable="true"/>
     <layout expand="editActions" spacing="true">
         <scrollBox id="scrollBox">
-            <form id="form" dataContainer="customerDc">
+            <form id="form" dataContainer="customerDc" colspan="2">
                 <column width="250px">
                     <textField id="nameField" property="name" required="true"/>
                     <textField id="addressField" property="address"/>
-                    <upload id="licenseField" property="licence"
-                            dataContainer="customerDc"
-                            fileStoragePutMode="IMMEDIATE"
-                            showClearButton="true"
-                            showFileName="true"/>
                     <textField id="creditCodeField" property="creditCode"/>
                     <textField id="bankNameField" property="bankName"/>
                     <textField id="bankAccountField" property="bankAccount"/>
                     <textField id="saleAreaField" property="saleArea"/>
                     <textField id="contactField" property="contact"/>
                     <textArea id="memoField" property="memo" rows="3"/>
+                </column>
+                <column width="250px">
+                    <upload id="licenseField" property="licence"
+                            dataContainer="customerDc"
+                            fileStoragePutMode="IMMEDIATE"
+                            showClearButton="true"
+                            showFileName="true"/>
+                    <textField id="invoiceContactField" property="invoiceContact"/>
+                    <textField id="invoicePhoneField" property="invoicePhone"/>
+                    <textField id="invoiceAddressField" property="invoiceAddress"/>
+                    <textField id="receiverField" property="receiver"/>
+                    <textField id="receivePhoneField" property="receivePhone"/>
+                    <textField id="receiveAddressField" property="receiveAddress"/>
                 </column>
             </form>
         </scrollBox>

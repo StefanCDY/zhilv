@@ -14,6 +14,7 @@ import com.haulmont.cuba.gui.model.CollectionPropertyContainer;
 import com.haulmont.cuba.gui.screen.*;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -39,11 +40,22 @@ public class ContractEdit extends StandardEditor<Contract> {
     @Inject
     private MessageBundle messageBundle;
 
+    @Subscribe
+    private void onInitEntity(InitEntityEvent<Contract> event) {
+        Contract contract = event.getEntity();
+        ContractItem contractItem = metadata.create(ContractItem.class);
+        contractItem.setContract(contract);
+        ArrayList<ContractItem> contractItems = new ArrayList<>();
+        contractItems.add(contractItem);
+        contract.setContractItems(contractItems);
+    }
+
     public Component generateProductCell(ContractItem item) {
         LookupField<Product> lookupField = uiComponents.create(LookupField.of(Product.class));
         lookupField.setOptions(new ContainerOptions<>(productsDc));
         lookupField.setValue(item.getProduct());
         lookupField.setRequired(true);
+        lookupField.setWidthFull();
         lookupField.addValueChangeListener(event -> {
             if (event.isUserOriginated()) {
                 item.setProduct(event.getValue());
@@ -56,6 +68,7 @@ public class ContractEdit extends StandardEditor<Contract> {
         LookupField<MeasureUnit> lookupField = uiComponents.create(LookupField.of(MeasureUnit.class));
         lookupField.setOptions(new ContainerOptions<>(measureUnitsDc));
         lookupField.setValue(item.getMeasureUnit());
+        lookupField.setWidthFull();
         lookupField.addValueChangeListener(event -> {
             if (event.isUserOriginated()) {
                 item.setMeasureUnit(event.getValue());

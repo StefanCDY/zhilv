@@ -46,7 +46,7 @@
         </form>
         <groupBox id="itemsBox" caption="msg://com.company.zhilv.entity/Contract.contractItems">
             <table id="itemsTable" dataContainer="itemsDc" width="100%" editable="true"
-                   columnControlVisible="false">
+                   columnControlVisible="false" sortable="false">
                 <actions>
                     <action id="add" type="add"/>
                     <action id="remove" type="remove"/>
@@ -54,6 +54,7 @@
                 <columns>
                     <column id="product" generator="generateProductCell" editable="true"/>
                     <column id="product.specification"/>
+                    <column id="batchNumber" editable="true"/>
                     <column id="measureUnit" generator="generateMeasureUnitCell" editable="true"/>
                     <column id="amount" editable="true"/>
                     <column id="unitPrice" editable="true"/>

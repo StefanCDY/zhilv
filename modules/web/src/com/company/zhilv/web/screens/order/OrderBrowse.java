@@ -28,10 +28,10 @@ public class OrderBrowse extends StandardLookup<Order> {
         if (Objects.nonNull(order)) {
             Order newOrder = metadata.create(Order.class);
             newOrder.setTotalPrice(order.getTotalPrice());
-            newOrder.setAmount(order.getAmount());
+//            newOrder.setAmount(order.getAmount());
             newOrder.setCargoOutNumber(order.getCargoOutNumber());
             newOrder.setContract(order.getContract());
-            newOrder.setCustomer(order.getCustomer());
+//            newOrder.setCustomer(order.getCustomer());
             newOrder.setDeliveryAddress(order.getDeliveryAddress());
             newOrder.setDeliveryTime(order.getDeliveryTime());
             newOrder.setDeliveryType(order.getDeliveryType());
@@ -42,17 +42,17 @@ public class OrderBrowse extends StandardLookup<Order> {
             newOrder.setInvoiceType(order.getInvoiceType());
             newOrder.setIsDeliver(order.getIsDeliver());
             newOrder.setLogisticsNumber(order.getLogisticsNumber());
-            newOrder.setMeasureUnit(order.getMeasureUnit());
+//            newOrder.setMeasureUnit(order.getMeasureUnit());
             newOrder.setMemo(order.getMemo());
             newOrder.setOrderDate(order.getOrderDate());
-            newOrder.setProduct(order.getProduct());
+//            newOrder.setProduct(order.getProduct());
             newOrder.setReceiveAddress(order.getReceiveAddress());
             newOrder.setReceivePhone(order.getReceivePhone());
             newOrder.setReceiver(order.getReceiver());
             newOrder.setRequirement(order.getRequirement());
             newOrder.setReturnDate(order.getReturnDate());
             newOrder.setReturnType(order.getReturnType());
-            newOrder.setUnitPrice(order.getUnitPrice());
+//            newOrder.setUnitPrice(order.getUnitPrice());
             screenBuilders.editor(ordersTable).editEntity(newOrder).build().show();
         }
     }

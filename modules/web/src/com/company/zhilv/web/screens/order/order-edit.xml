@@ -8,20 +8,16 @@
                   class="com.company.zhilv.entity.Order"
                   view="order-view">
             <loader/>
+            <collection id="orderItemsDc" property="orderItems"/>
         </instance>
-        <collection id="contractsDc" class="com.company.zhilv.entity.Contract" view="_minimal">
+        <collection id="contractsDc" class="com.company.zhilv.entity.Contract" view="contract-order-view">
             <loader id="contractsDl">
                 <query><![CDATA[select e from zhilv_Contract e ]]></query>
             </loader>
         </collection>
         <collection id="productsDc" class="com.company.zhilv.entity.Product" view="product-view">
             <loader id="productsDl">
-                <query><![CDATA[select e from zhilv_Product e ]]></query>
-            </loader>
-        </collection>
-        <collection id="customersDc" class="com.company.zhilv.entity.Customer" view="_minimal">
-            <loader id="customersDl">
-                <query><![CDATA[select e from zhilv_Customer e ]]></query>
+                <query><![CDATA[select e from zhilv_Product e where 1 <> 1 ]]></query>
             </loader>
         </collection>
         <collection id="measureUnitsDc" class="com.company.zhilv.entity.MeasureUnit" view="_minimal">
@@ -31,7 +27,7 @@
         </collection>
     </data>
     <dialogMode height="AUTO"
-                width="AUTO"
+                width="1200px"
                 modal="true"
                 forceDialog="true" resizable="true"/>
     <layout expand="scrollBox" spacing="true">
@@ -40,25 +36,42 @@
                 <form id="form" dataContainer="orderDc">
                     <column width="250px">
                         <lookupField id="contractField" property="contract" optionsContainer="contractsDc" required="true"/>
-                        <lookupField id="productField" property="product" optionsContainer="productsDc" required="true"/>
-                        <textField id="packingField" property="product.packing" editable="false"/>
-                        <textField id="manufactureDateField" property="product.manufactureDate" editable="false"/>
                         <dateField id="orderDateField" property="orderDate"/>
-                        <textField id="returnTypeField" property="returnType"/>
-                        <dateField id="returnDateField" property="returnDate"/>
+                        <currencyField id="totalPriceField" property="totalPrice" editable="false" currency="￥" caption="msg://order.totalPrice"/>
                         <textArea id="requirementField" property="requirement" rows="5"/>
                     </column>
                     <column width="250px">
-                        <lookupField id="measureUnitField" property="measureUnit" optionsContainer="measureUnitsDc"/>
-                        <textField id="amountField" property="amount"/>
-                        <textField id="actualAmountField" property="actualAmount"/>
-                        <currencyField id="unitPriceField" property="unitPrice"/>
-                        <currencyField id="totalPriceField" property="totalPrice"/>
+                        <textField id="returnTypeField" property="returnType"/>
+                        <dateField id="returnDateField" property="returnDate"/>
                         <textField id="cargoOutNumberField" property="cargoOutNumber"/>
-                        <label/>
                         <textArea id="memoField" property="memo" rows="5"/>
                     </column>
                 </form>
+            </groupBox>
+            <groupBox id="itemsBox" caption="msg://com.company.zhilv.entity/Order.orderItems">
+                <table id="itemsTable" dataContainer="orderItemsDc" width="100%" editable="true"
+                       columnControlVisible="false" sortable="false">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="product" generator="generateProductCell" editable="true"/>
+                        <column id="product.specification"/>
+                        <column id="batchNumber" editable="true" width="150px"/>
+                        <column id="measureUnit" generator="generateMeasureUnitCell" editable="true" width="100px"/>
+                        <column id="amount" editable="true" width="100px"/>
+                        <column id="unitPrice" editable="true" width="100px"/>
+                        <column id="totalPrice" width="100px"/>
+                        <column id="memo" editable="true"/>
+                    </columns>
+                    <rowsCount/>
+                    <rows/>
+                    <buttonsPanel>
+                        <button action="itemsTable.add"/>
+                        <button action="itemsTable.remove"/>
+                    </buttonsPanel>
+                </table>
             </groupBox>
             <groupBox caption="msg://delivery.information">
                 <form id="deliveryForm" dataContainer="orderDc">
@@ -71,15 +84,15 @@
                     <column width="250px">
                         <textField id="deliveryAddressField" property="deliveryAddress"/>
                         <checkBox id="isDeliverField" property="isDeliver"/>
-                        <textField id="logisticsNumberField" property="logisticsNumber"/>
-                        <dateField id="deliveryTimeField" property="deliveryTime"/>
+                        <textField id="logisticsNumberField" property="logisticsNumber" editable="false"/>
+                        <dateField id="deliveryTimeField" property="deliveryTime" editable="false"/>
                     </column>
                 </form>
             </groupBox>
             <groupBox caption="msg://invoice.information">
                 <form id="invoiceForm" dataContainer="orderDc">
                     <column width="250px">
-                        <lookupField id="customerField" property="customer" optionsContainer="customersDc"/>
+                        <textField id="customerField" property="contract.customer" editable="false"/>
                         <lookupField id="invoiceTypeField" property="invoiceType"/>
                         <textField id="invoiceNumberField" property="invoiceNumber"/>
                     </column>

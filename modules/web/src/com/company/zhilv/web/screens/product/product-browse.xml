@@ -37,7 +37,6 @@
             <columns>
                 <column id="name"/>
                 <column id="specification"/>
-                <column id="number"/>
                 <column id="packing"/>
                 <column id="place"/>
                 <column id="manufactureDate"/>

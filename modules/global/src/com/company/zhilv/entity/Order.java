@@ -1,11 +1,15 @@
 package com.company.zhilv.entity;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.NumberFormat;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "ZHILV_ORDER")
 @Entity(name = "zhilv_Order")
@@ -16,26 +20,7 @@ public class Order extends StandardEntity {
     @JoinColumn(name = "CONTRACT_ID")
     protected Contract contract;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID")
-    protected Customer customer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID")
-    protected Product product;
-
-    @NumberFormat(pattern = "#,##0.####")
-    @Column(name = "AMOUNT", precision = 19, scale = 4)
-    protected BigDecimal amount;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEASURE_UNIT_ID")
-    protected MeasureUnit measureUnit;
-
-    @NumberFormat(pattern = "#,##0.00")
-    @Column(name = "UNIT_PRICE")
-    protected BigDecimal unitPrice;
-
+    @NumberFormat(pattern = "#,###.00")
     @Column(name = "TOTAL_PRICE")
     protected BigDecimal totalPrice;
 
@@ -108,6 +93,20 @@ public class Order extends StandardEntity {
     @Column(name = "MEMO")
     protected String memo;
 
+    @OrderBy("createTs")
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    protected List<OrderItem> orderItems;
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
     public BigDecimal getActualAmount() {
         return actualAmount;
     }
@@ -164,28 +163,12 @@ public class Order extends StandardEntity {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public MeasureUnit getMeasureUnit() {
-        return measureUnit;
-    }
-
-    public void setMeasureUnit(MeasureUnit measureUnit) {
-        this.measureUnit = measureUnit;
-    }
-
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
 
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
     }
 
     public Boolean getIsDeliver() {
@@ -292,14 +275,6 @@ public class Order extends StandardEntity {
         this.requirement = requirement;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Date getOrderDate() {
         return orderDate;
     }
@@ -308,19 +283,4 @@ public class Order extends StandardEntity {
         this.orderDate = orderDate;
     }
 
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

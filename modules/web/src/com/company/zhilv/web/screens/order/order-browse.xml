@@ -30,31 +30,16 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="copy" caption="mainMsg://actions.Copy" icon="icons/copy.png" trackSelection="true"/>
+                <action id="copy" caption="mainMsg://actions.Copy" icon="icons/copy.png" trackSelection="true" visible="false"/>
                 <action id="refresh" type="refresh"/>
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
-                <column id="orderDate"/>
                 <column id="contract.code"/>
-                <column id="product.name"/>
-                <column id="product.specification"/>
-                <column id="product.number"/>
-                <column id="product.packing"/>
-                <column id="product.manufactureDate"/>
-                <column id="customer"/>
-                <column id="measureUnit"/>
-                <column id="amount">
-                    <aggregation type="SUM"/>
-                </column>
-                <column id="actualAmount">
-                    <aggregation type="SUM"/>
-                </column>
-                <column id="unitPrice"/>
+                <column id="orderDate"/>
                 <column id="totalPrice">
                     <aggregation type="SUM"/>
                 </column>
-                <column id="requirement"/>
                 <column id="cargoOutNumber"/>
                 <column id="deliveryType"/>
                 <column id="receiver"/>
@@ -65,13 +50,14 @@
                 <column id="invoiceAddress"/>
                 <column id="invoiceContact"/>
                 <column id="invoicePhone"/>
-                <column id="deliveryAddress"/>
                 <column id="isDeliver"/>
+                <column id="deliveryAddress"/>
                 <column id="logisticsNumber"/>
                 <column id="deliveryTime"/>
                 <column id="returnType"/>
                 <column id="returnDate"/>
-                <column id="memo"/>
+                <column id="requirement" maxTextLength="50"/>
+                <column id="memo" maxTextLength="50"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

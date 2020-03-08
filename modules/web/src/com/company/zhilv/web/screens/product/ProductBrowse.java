@@ -29,7 +29,6 @@ public class ProductBrowse extends StandardLookup<Product> {
             Product newProduct = metadata.create(Product.class);
             newProduct.setName(product.getName());
             newProduct.setSpecification(product.getSpecification());
-            newProduct.setNumber(product.getNumber());
             newProduct.setPacking(product.getPacking());
             newProduct.setPlace(product.getPlace());
             newProduct.setManufactureDate(product.getManufactureDate());

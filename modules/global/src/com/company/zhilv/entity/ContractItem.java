@@ -23,6 +23,9 @@ public class ContractItem extends StandardEntity {
     @JoinColumn(name = "MEASURE_UNIT_ID")
     protected MeasureUnit measureUnit;
 
+    @Column(name = "BATCH_NUMBER")
+    protected String batchNumber;
+
     @NumberFormat(pattern = "#,##0.####")
     @Column(name = "AMOUNT")
     protected BigDecimal amount;
@@ -34,6 +37,14 @@ public class ContractItem extends StandardEntity {
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public String getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
+    }
 
     public MeasureUnit getMeasureUnit() {
         return measureUnit;

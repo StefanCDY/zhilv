@@ -6,9 +6,11 @@ import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
+import com.haulmont.cuba.core.global.DesignSupport;
 
 import javax.persistence.*;
 
+@DesignSupport("{'generateDdl':false}")
 @NamePattern("%s|name")
 @Table(name = "ZHILV_CUSTOMER")
 @Entity(name = "zhilv_Customer")
@@ -42,9 +44,77 @@ public class Customer extends StandardEntity {
     @Column(name = "CONTACT")
     protected String contact;
 
+    @Column(name = "INVOICE_CONTACT")
+    protected String invoiceContact;
+
+    @Column(name = "INVOICE_PHONE")
+    protected String invoicePhone;
+
+    @Lob
+    @Column(name = "INVOICE_ADDRESS")
+    protected String invoiceAddress;
+
+    @Column(name = "RECEIVER")
+    protected String receiver;
+
+    @Column(name = "RECEIVE_PHONE")
+    protected String receivePhone;
+
+    @Lob
+    @Column(name = "RECEIVE_ADDRESS")
+    protected String receiveAddress;
+
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public String getReceiveAddress() {
+        return receiveAddress;
+    }
+
+    public void setReceiveAddress(String receiveAddress) {
+        this.receiveAddress = receiveAddress;
+    }
+
+    public String getReceivePhone() {
+        return receivePhone;
+    }
+
+    public void setReceivePhone(String receivePhone) {
+        this.receivePhone = receivePhone;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getInvoiceAddress() {
+        return invoiceAddress;
+    }
+
+    public void setInvoiceAddress(String invoiceAddress) {
+        this.invoiceAddress = invoiceAddress;
+    }
+
+    public String getInvoicePhone() {
+        return invoicePhone;
+    }
+
+    public void setInvoicePhone(String invoicePhone) {
+        this.invoicePhone = invoicePhone;
+    }
+
+    public String getInvoiceContact() {
+        return invoiceContact;
+    }
+
+    public void setInvoiceContact(String invoiceContact) {
+        this.invoiceContact = invoiceContact;
+    }
 
     public String getBankName() {
         return bankName;
