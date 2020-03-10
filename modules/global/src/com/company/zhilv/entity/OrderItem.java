@@ -2,8 +2,6 @@ package com.company.zhilv.entity;
 
 import com.haulmont.chile.core.annotations.NumberFormat;
 import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.cuba.core.entity.annotation.OnDelete;
-import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,7 +15,6 @@ public class OrderItem extends StandardEntity {
     @JoinColumn(name = "ORDER_ID")
     protected Order order;
 
-    @OnDelete(DeletePolicy.CASCADE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID")
     protected Product product;
@@ -40,9 +37,21 @@ public class OrderItem extends StandardEntity {
     @Column(name = "TOTAL_PRICE")
     protected BigDecimal totalPrice;
 
+    @NumberFormat(pattern = "#,##0.####")
+    @Column(name = "ACTUAL_AMOUNT")
+    protected BigDecimal actualAmount;
+
     @Lob
     @Column(name = "MEMO")
     protected String memo;
+
+    public BigDecimal getActualAmount() {
+        return actualAmount;
+    }
+
+    public void setActualAmount(BigDecimal actualAmount) {
+        this.actualAmount = actualAmount;
+    }
 
     public Order getOrder() {
         return order;

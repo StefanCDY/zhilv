@@ -1,11 +1,13 @@
 package com.company.zhilv.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.chile.core.annotations.NumberFormat;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@NamePattern("%s|product")
 @Table(name = "ZHILV_CONTRACT_ITEM")
 @Entity(name = "zhilv_ContractItem")
 public class ContractItem extends StandardEntity {

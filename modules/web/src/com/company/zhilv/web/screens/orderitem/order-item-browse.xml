@@ -21,22 +21,24 @@
                 dataLoader="orderItemsDl">
             <properties include=".*"/>
         </filter>
-        <table id="orderItemsTable"
-               width="100%"
-               dataContainer="orderItemsDc" aggregatable="true">
+        <table id="orderItemsTable" presentations="true"
+                    width="100%" textSelectionEnabled="true"
+                    dataContainer="orderItemsDc" aggregatable="true">
             <actions>
-                <action id="create" type="create" visible="false"/>
-                <action id="edit" type="edit" visible="false"/>
-                <action id="remove" type="remove" visible="false"/>
+                <action id="create" type="create" visible="false" enable="false"/>
+                <action id="edit" type="edit" visible="false" enable="false"/>
+                <action id="remove" type="remove" visible="false" enable="false"/>
                 <action id="refresh" type="refresh"/>
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
                 <column id="order.code"/>
+                <column id="order.contract.code"/>
                 <column id="order.orderDate"/>
                 <column id="order.contract.customer"/>
-                <column id="product.name"/>
+                <column id="product" captionProperty="product.name"/>
                 <column id="product.specification"/>
+                <column id="product.packing"/>
                 <column id="batchNumber"/>
                 <column id="amount"/>
                 <column id="measureUnit"/>
@@ -44,6 +46,7 @@
                 <column id="totalPrice">
                     <aggregation type="SUM"/>
                 </column>
+                <column id="actualAmount"/>
                 <column id="order.cargoOutNumber"/>
                 <column id="order.deliveryType"/>
                 <column id="order.isDeliver"/>

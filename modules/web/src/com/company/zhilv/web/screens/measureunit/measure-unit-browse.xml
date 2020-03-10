@@ -23,8 +23,8 @@
                 dataLoader="measureUnitsDl">
             <properties include=".*"/>
         </filter>
-        <table id="measureUnitsTable"
-               width="100%"
+        <table id="measureUnitsTable" presentations="true"
+               width="100%" textSelectionEnabled="true"
                dataContainer="measureUnitsDc">
             <actions>
                 <action id="create" type="create"/>

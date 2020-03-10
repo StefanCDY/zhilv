@@ -23,8 +23,8 @@
                 dataLoader="contractsDl">
             <properties include=".*"/>
         </filter>
-        <table id="contractsTable"
-               width="100%"
+        <table id="contractsTable" textSelectionEnabled="true"
+               width="100%" presentations="true"
                dataContainer="contractsDc">
             <actions>
                 <action id="create" type="create"/>

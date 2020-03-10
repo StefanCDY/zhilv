@@ -23,8 +23,8 @@
                 dataLoader="productsDl">
             <properties include=".*"/>
         </filter>
-        <table id="productsTable"
-               width="100%"
+        <table id="productsTable" presentations="true"
+               width="100%" textSelectionEnabled="true"
                dataContainer="productsDc">
             <actions>
                 <action id="create" type="create"/>

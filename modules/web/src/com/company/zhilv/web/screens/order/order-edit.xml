@@ -37,7 +37,7 @@
                     <column width="250px">
                         <lookupField id="contractField" property="contract" optionsContainer="contractsDc" required="true"/>
                         <dateField id="orderDateField" property="orderDate"/>
-                        <currencyField id="totalPriceField" property="totalPrice" editable="false" currency="￥" caption="msg://order.totalPrice"/>
+                        <currencyField id="totalPriceField" property="totalPrice" editable="false" currency="元" caption="msg://order.totalPrice"/>
                         <textArea id="requirementField" property="requirement" rows="5"/>
                     </column>
                     <column width="250px">
@@ -63,6 +63,7 @@
                         <column id="amount" editable="true" width="120px"/>
                         <column id="unitPrice" editable="true" width="120px"/>
                         <column id="totalPrice" width="120px"/>
+                        <column id="actualAmount" editable="true" width="120px"/>
                         <column id="memo" editable="true"/>
                     </columns>
                     <rowsCount/>

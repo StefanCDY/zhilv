@@ -81,10 +81,6 @@ public class Order extends StandardEntity {
     @Column(name = "CARGO_OUT_NUMBER")
     protected String cargoOutNumber;
 
-    @NumberFormat(pattern = "#,##0.####")
-    @Column(name = "ACTUAL_AMOUNT", precision = 19, scale = 4)
-    protected BigDecimal actualAmount = BigDecimal.ZERO;
-
     @Column(name = "RETURN_TYPE")
     protected String returnType;
 
@@ -116,14 +112,6 @@ public class Order extends StandardEntity {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
-    }
-
-    public BigDecimal getActualAmount() {
-        return actualAmount;
-    }
-
-    public void setActualAmount(BigDecimal actualAmount) {
-        this.actualAmount = actualAmount;
     }
 
     public Contract getContract() {

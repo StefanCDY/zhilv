@@ -16,11 +16,8 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.function.Function;
 
 import static java.util.Objects.nonNull;
 
@@ -49,6 +46,7 @@ public class OrderEdit extends StandardEditor<Order> {
     private Notifications notifications;
     @Inject
     private MessageBundle messageBundle;
+    private Map<UUID, Integer> productMap = new HashMap<>();
 
     @Subscribe
     private void onInitEntity(InitEntityEvent<Order> event) {
@@ -93,7 +91,13 @@ public class OrderEdit extends StandardEditor<Order> {
         if (nonNull(contract)) {
             List<Product> productList = productsDc.getMutableItems();
             productList.clear();
-            productList.addAll(contract.getContractItems().stream().map(ContractItem::getProduct).distinct().collect(Collectors.toList()));
+            productMap.clear();
+            List<ContractItem> contractItems = contract.getContractItems();
+            for (int i = 0; i < contractItems.size(); i++) {
+                Product product = contractItems.get(i).getProduct();
+                productList.add(product);
+                productMap.put(product.getId(), i);
+            }
         }
     }
 
@@ -148,18 +152,14 @@ public class OrderEdit extends StandardEditor<Order> {
                 Product product = event.getValue();
                 Contract contract = getEditedEntity().getContract();
                 if (nonNull(contract)) {
-                    List<ContractItem> contractItems = contract.getContractItems();
-                    for (ContractItem contractItem : contractItems) {
-                        if (product.getName().equals(contractItem.getProduct().getName())) {
-                            item.setBatchNumber(contractItem.getBatchNumber());
-                            item.setMeasureUnit(contractItem.getMeasureUnit());
-                            item.setAmount(contractItem.getAmount());
-                            item.setUnitPrice(contractItem.getUnitPrice());
-                            break;
-                        }
-                    }
+                    Integer index = productMap.get(product.getId());
+                    ContractItem contractItem = contract.getContractItems().get(index);
+                    item.setBatchNumber(contractItem.getBatchNumber());
+                    item.setMeasureUnit(contractItem.getMeasureUnit());
+                    item.setAmount(contractItem.getAmount());
+                    item.setUnitPrice(contractItem.getUnitPrice());
+                    item.setProduct(product);
                 }
-                item.setProduct(product);
             }
         });
         return lookupField;

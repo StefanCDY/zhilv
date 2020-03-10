@@ -23,8 +23,8 @@
                 dataLoader="ordersDl">
             <properties include=".*"/>
         </filter>
-        <table id="ordersTable"
-               width="100%"
+        <table id="ordersTable" presentations="true"
+               width="100%" textSelectionEnabled="true"
                dataContainer="ordersDc" aggregatable="true">
             <actions>
                 <action id="create" type="create"/>
@@ -38,6 +38,7 @@
                 <column id="code"/>
                 <column id="contract.code"/>
                 <column id="orderDate"/>
+                <column id="contract.customer"/>
                 <column id="totalPrice">
                     <aggregation type="SUM"/>
                 </column>
