@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="mainMsg://application.caption">
+    <data>
+        <instance id="systemInfoDc" class="com.company.zhilv.bean.SystemInfo" view="_local">
+            <loader id="systemInfoDl"/>
+        </instance>
+    </data>
+    <timers>
+        <timer id="timer" delay="5000" autostart="true" repeating="true" onTimer="onTimerClick"/>
+    </timers>
     <layout expand="foldersSplit">
         <hbox id="titleBar"
               stylename="c-app-menubar"
@@ -16,6 +24,9 @@
                   align="MIDDLE_LEFT"/>
             <ftsField id="ftsField"
                       align="MIDDLE_LEFT"/>
+            <hbox id="onlineBox" height="100%">
+                <label id="sessionLabel" stylename="colored" align="MIDDLE_CENTER"/>
+            </hbox>
             <userIndicator id="userIndicator"
                            align="MIDDLE_LEFT"/>
             <timeZoneIndicator id="timeZoneIndicator"
@@ -42,6 +53,56 @@
                       width="100%"
                       height="100%">
                 <initialLayout spacing="true" margin="true">
+                    <grid id="grid" spacing="true" align="MIDDLE_CENTER">
+                        <columns count="5"/>
+                        <rows>
+                            <row>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_name" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="systemName"/>
+                                <label/>
+                                <label rowspan="1" colspan="" align="MIDDLE_CENTER" value="msg://jvm_name" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="jvmName"/>
+                            </row>
+                            <row>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_version" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="systemVersion"/>
+                                <label/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://jvm_version" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="jvmVersion"/>
+                            </row>
+                            <row>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_arch" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="systemArch"/>
+                                <label/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_total_memory" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="totalMemory"/>
+                            </row>
+                            <row>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_processor" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="systemProcessor"/>
+                                <label/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_free_memory" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="freeMemory"/>
+                            </row>
+                            <row>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_load_average" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="loadAverage"/>
+                                <label/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_CENTER" value="msg://system_used_memory_percent" stylename="bold"/>
+                                <label rowspan="1" colspan="1" align="MIDDLE_LEFT" dataContainer="systemInfoDc"
+                                       property="usedMemoryPercent"/>
+                            </row>
+                        </rows>
+                    </grid>
                 </initialLayout>
             </workArea>
         </split>

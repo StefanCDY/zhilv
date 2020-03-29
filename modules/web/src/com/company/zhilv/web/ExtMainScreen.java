@@ -1,11 +1,15 @@
 package com.company.zhilv.web;
 
-import com.haulmont.cuba.gui.components.SizeUnit;
-import com.haulmont.cuba.gui.components.SplitPanel;
+import com.company.zhilv.bean.SystemInfo;
+import com.haulmont.cuba.core.global.Messages;
+import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.components.mainwindow.AppWorkArea;
 import com.haulmont.cuba.gui.components.mainwindow.FoldersPane;
+import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.UiController;
 import com.haulmont.cuba.gui.screen.UiDescriptor;
+import com.haulmont.cuba.security.app.UserSessionService;
 import com.haulmont.cuba.web.WebConfig;
 import com.haulmont.cuba.web.app.main.MainScreen;
 import com.haulmont.cuba.web.gui.components.WebComponentsHelper;
@@ -26,6 +30,19 @@ public class ExtMainScreen extends MainScreen {
     private AppWorkArea workArea;
     @Inject
     private WebConfig webConfig;
+    @Inject
+    private Label<String> sessionLabel;
+    @Inject
+    private HtmlAttributes htmlAttributes;
+    @Inject
+    private Messages messages;
+    @Inject
+    private UserSessionService userSessionService;
+    @Inject
+    private InstanceContainer<SystemInfo> systemInfoDc;
+    @Inject
+    private Metadata metadata;
+    private final String SESSION_LABEL_CSS_COLOR = "DodgerBlue";
 
     public ExtMainScreen() {
         addInitListener(this::initLayout);
@@ -51,5 +68,21 @@ public class ExtMainScreen extends MainScreen {
             getWindow().add(workArea, foldersSplitIndex);
             getWindow().expand(workArea);
         }
+        htmlAttributes.setCssProperty(sessionLabel, HtmlAttributes.CSS.COLOR, SESSION_LABEL_CSS_COLOR);
+        systemInfoDc.setItem(metadata.create(SystemInfo.class));
+        refreshSessionLabel();
+    }
+
+    public void onTimerClick(Timer source) {
+        refreshSessionLabel();
+        systemInfoDc.setItem(metadata.create(SystemInfo.class));
+    }
+
+    private void refreshSessionLabel() {
+        UserSessionService.Filter filter = UserSessionService.Filter.ALL;
+        long sessionNum = userSessionService.loadUserSessionEntities(filter).stream()
+                .filter(userSessionEntity -> !userSessionEntity.getSystem()).count();
+        String message = messages.formatMainMessage("system_online_number", sessionNum);
+        sessionLabel.setValue(message);
     }
 }
